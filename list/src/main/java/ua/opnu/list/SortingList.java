@@ -128,9 +128,33 @@ public class SortingList extends Application {
             }
         });
 
-        // TODO: Обробка натискання на кнопку "Сортувати за прізвищем"
+        final boolean[] orderByName = {true};
+        final boolean[] orderByLastName = {true};
+        final boolean[] orderByMark = {true};
 
-        // TODO: Обробка натискання на кнопку "Сортувати за оцінкою"
+        sortByNameButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                students.sort(new NameSorter(orderByName[0]));
+                orderByName[0] = !orderByName[0];
+            }
+        });
+
+        sortByLastNameButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                students.sort(new LastNameSorter(orderByLastName[0]));
+                orderByLastName[0] = !orderByLastName[0];
+            }
+        });
+
+        sortByMarkButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                students.sort(new MarkSorter(orderByMark[0]));
+                orderByMark[0] = !orderByMark[0];
+            }
+        });
 
         // Створюємо горизонтальний ряд
         HBox hb = new HBox();
